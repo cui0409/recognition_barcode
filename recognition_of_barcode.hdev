@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.1" halcon_version="13.0">
+<procedure name="main">
+<interface/>
+<body>
+<c>*读取图片</c>
+<l as_id="image_acquisition" as_name="Image Acquisition 01" as_grp="[2,1]" as_ord="1">read_image (Image, '机顶盒1.jpg')</l>
+<c></c>
+<l>rgb1_to_gray (Image, GrayImage)</l>
+<l>dev_set_draw ('margin')</l>
+<c></c>
+<c>*第一步：读取模板 </c>
+<c>*创建一个条形码阅读器的模型。 </c>
+<l>create_bar_code_model ([], [], BarCodeHandle)</l>
+<c></c>
+<c>*第二步：使用模板 </c>
+<c>*检测和读取条形码符号中的图像。 </c>
+<l>find_bar_code(GrayImage, SymbolRegions, BarCodeHandle, 'auto',DecodedDataStrings)</l>
+<c></c>
+<c>*显示</c>
+<l>disp_message(200000, DecodedDataStrings, 'window', 12, 12, 'black', 'true')</l>
+<c></c>
+<l>clear_bar_code_model (BarCodeHandle)</l>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
